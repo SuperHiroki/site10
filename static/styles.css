@@ -1,0 +1,52 @@
+.comment_form {
+    width: 95%;
+}
+.red-text {
+    color: red;
+}
+.blue-text {
+    color: blue;
+}
+.green-text {
+    color: green;
+}
+p {
+    word-wrap: break-word;
+}
+.button_class{
+    width: 130px;
+    height: 43px;
+}
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 2px;
+    width: 400px;
+    height: 400px;
+    background-color: #008000;
+    border: 4px solid #000000;
+}
+.cell_border {
+    border: 1px solid rgb(0, 0, 0);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cell {
+    border: 1px solid red;
+    border-radius: 50%;
+    width: 90%;
+    height: 90%;
+    background-color: transparent;
+}
+.cell.white {
+    background-color: white;
+}
+.cell.black {
+    background-color: black;
+}
+
+
+

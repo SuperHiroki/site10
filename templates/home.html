@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <h4>あなたは {{ nickname }} </h4>
+  <h1 class="red-text">オセロのオンライン対戦</h1>
+  <h1 class="blue-text">管理者: ShiroatoHiro</h1>
+  <a href="{{ url_for('signup') }}">Signup</a><br>
+  <a href="{{ url_for('login') }}">Login</a><br>
+  <a href="{{ url_for('logout') }}">Logout</a>
+  <p>このウェブサイトでは、オセロのオンライン対戦ができます。</p>
+  {% if login_true_or_false %}
+    <p class="red-text">{{ roomid_password_wrong_or_not }}</p>
+    <p class="green-text">部屋に入る</p>
+    <form method="POST">
+      <label for="enter_room_id">Room ID:</label>
+      <input id="enter_room_id" name="enter_room_id" required>
+      <br>
+      <label for="enter_room_password">Room Password:</label>
+      <input id="enter_room_password" name="enter_room_password" required>
+      <input type="submit" value="Enter Room" class="button_class">
+    </form>
+    <p class="green-text">新しい部屋を作る（Passwordあり）</p>
+    <form method="POST">
+      <label for="new_room_name">Room Name:</label>
+      <input id="new_room_name" name="new_room_name" required>
+      <br>
+      <label for="new_room_password">Room Password:</label>
+      <input id="new_room_password" name="new_room_password" required>
+      <br>
+      <label for="new_room_password2">Room Password(確認用):</label>
+      <input id="new_room_password2" name="new_room_password2" required>
+      <input type="submit" value="New Room" class="button_class">
+    </form>
+    <p class="green-text">新しい部屋を作る（Passwordなし。無差別対戦。）</p>
+    <form method="POST">
+      <label for="new_room_name_without_pass">Room Name:</label>
+      <input id="new_room_name_without_pass" name="new_room_name_without_pass" required>
+      <input type="submit" value="New Room" class="button_class">
+    </form>
+    <h4 class="green-text">無差別対戦</h4>
+    <ul>
+      {% for room, players, spectators in rooms_for_all_each_users %}
+        <li>
+          <a href="{{ url_for('room', room_id = room['ID']) }}">Room ID: {{ room['ID'] }} / Room Name: {{ room['room_name'] }} / Players: {{ players }} / Spectators: {{ spectators }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <h4 class="green-text">鍵あり部屋</h4>
+    <ul>
+      {% for room, players, spectators in rooms_each_users %}
+        <li>
+          <a href="{{ url_for('room', room_id = room['ID']) }}">Room ID: {{ room['ID'] }} / Room Name: {{ room['room_name'] }} / Players: {{ players }} / Spectators: {{ spectators }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Realtime Chatを始めるにはログインをしてください。</p>
+  {% endif %}
+</body>
+</html>

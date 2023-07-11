@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Othello</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='game.js') }}"></script>
+</head>
+<body>
+  <a href="{{ url_for('home') }}">Leave room</a>
+  <h4>あなたは {{ nickname }} </h4>
+  <h1 class="red-text">Room ID: <span id="room_id">{{ room_id }}</span> </h1>
+  <h1 class="blue-text">Room Name: <span id="room_name">{{ room_name }}</span> </h1>
+  <div>
+    <div id="players_condition" class="red-text"></div>
+    <h4>あなたは<span id="player_or_spectator" class="green-text">観戦者</span>です</h4>
+    <h4 id="current_turn"></h4>
+    <div id="spectator_button">
+      <button type="button" id="start_play" class="button_class">対戦する</button>
+      <h4 id="players_already_decided"></h4>
+    </div>
+    <h2 id="game_condition" class="red-text"></h2>
+  </div>
+  <h2 id="players_nickname">??? vs ???</h2>
+  <div id="board">
+    {% for i in range(8) %}
+        {% for j in range(8) %}
+        <div class="cell_border">
+          <div class="cell" id="cell-{{i}}-{{j}}"></div>
+        </div>
+        {% endfor %}
+    {% endfor %}
+  </div>
+  <div>
+    <h4>現在の対戦者は<span id="how_many_players" class="green-text">0</span>人です。2人になったら試合を開始します。（リアルタイムの対戦者ではないです）</h4>
+    <h4>現在の観戦者は<span id="how_many_spectators" class="green-text">0</span>人です。（リアルタイムの観戦者ではないです）</h4>
+  </div>
+  <input type="hidden" id="hidden_user_id" value="{{ user_id }}">
+</body>
+</html>
