@@ -506,9 +506,9 @@ def enter_players(room_id):
 #make_ids_nicknames_blackorwhites_list
 def make_ids_nicknames_blackorwhites_list(players):
     ids_nicknames_blackorwhites_list=[]
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
     for player in players:
-        conn = get_db()
-        cursor = conn.cursor(dictionary=True)
         cursor.execute("SELECT * FROM user WHERE ID = %s", (player['user_ID'], ))
         user=cursor.fetchone()
         id_nickname_blackorwhite_each_dict={}
@@ -516,6 +516,7 @@ def make_ids_nicknames_blackorwhites_list(players):
         id_nickname_blackorwhite_each_dict['nickname']=user['nickname']
         id_nickname_blackorwhite_each_dict['role']=player['role']
         ids_nicknames_blackorwhites_list.append(id_nickname_blackorwhite_each_dict)
+    conn.close()
     return ids_nicknames_blackorwhites_list
 
 #get_color
