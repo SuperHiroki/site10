@@ -30,8 +30,8 @@ time.sleep(7)
 db_user_name='site10user'
 db_password='140286TakaHiro'
 #db_host='localhost'
-#db_host='site10-db-1'#dockerのmysqlコンテナはこれを使う。
-db_host='site10_db_1'#VPSのdockerのmysqlコンテナはこれを使う。
+db_host='site10-db-1'#dockerのmysqlコンテナはこれを使う。
+#db_host='site10_db_1'#VPSのdockerのmysqlコンテナはこれを使う。
 db_name='site10db_1'
 
 # DBを構築
@@ -182,6 +182,12 @@ board_first[3,4] = board_first[4,3] = 2  # Black pieces
 # ホームへ
 @app.route('/', methods=['GET', 'POST'])
 def home():
+
+    user = User(1, "No Name", "NoNamePassword")
+    login_user(user)
+
+
+    
     app.logger.debug('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq')
     nickname=get_nickname()
     roomid_password_wrong_or_not=""
