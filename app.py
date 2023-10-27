@@ -30,8 +30,8 @@ time.sleep(7)
 db_user_name='site10user'
 db_password='140286TakaHiro'
 #db_host='localhost'
-db_host='site10-db-1'#dockerのmysqlコンテナはこれを使う。
-#db_host='site10_db_1'#VPSのdockerのmysqlコンテナはこれを使う。
+#db_host='site10-db-1'#dockerのmysqlコンテナはこれを使う。
+db_host='site10_db_1'#VPSのdockerのmysqlコンテナはこれを使う。
 db_name='site10db_1'
 
 # DBを構築
