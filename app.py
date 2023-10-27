@@ -182,18 +182,6 @@ board_first[3,4] = board_first[4,3] = 2  # Black pieces
 # ホームへ
 @app.route('/', methods=['GET', 'POST'])
 def home():
-
-    '''
-    if not current_user.is_authenticated:
-        user = User(1, "No Name", "NoNamePassword")
-        login_user(user)
-    '''
-
-
-
-
-
-    
     app.logger.debug('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq')
     nickname=get_nickname()
     roomid_password_wrong_or_not=""

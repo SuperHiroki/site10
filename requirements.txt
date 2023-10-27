@@ -5,5 +5,4 @@ mysql-connector-python==8.0.26
 Flask-Limiter==1.4
 flask-login==0.6.2
 flask_cors==4.0.0
-
 Werkzeug==2.2.2
