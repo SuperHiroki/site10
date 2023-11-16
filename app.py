@@ -125,6 +125,7 @@ def get_nickname():
 @app.route('/login', methods=['GET', 'POST'])
 @limiter.limit("30/minute") 
 def login():
+    nickname=get_nickname()
     if request.method == 'POST':
         conn = get_db()
         cursor = conn.cursor(dictionary=True)
@@ -134,12 +135,13 @@ def login():
         if user_db and user_db['password'] == hash_password(request.form['password']):
             user = User(user_db['ID'], user_db['nickname'], user_db['password'])
             login_user(user)
+            nickname=get_nickname()
             return redirect(url_for('home'))
         else:
             good_or_bad="nicknameかpasswordが間違っています。"
     elif request.method == 'GET':
-        good_or_bad="コメント追加やコメント削除にはログインが必要です"
-    return render_template('login.html', good_or_bad=good_or_bad)
+        good_or_bad="対戦や観戦にはログインが必要です"
+    return render_template('login.html', good_or_bad=good_or_bad, nickname=nickname)
 
 @app.route('/logout')
 def logout():
@@ -148,6 +150,7 @@ def logout():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    nickname=get_nickname()
     if request.method == 'POST':
         conn = get_db()
         cursor = conn.cursor(dictionary=True)
@@ -163,6 +166,7 @@ def signup():
                 user_id = cursor.lastrowid
                 user = User(user_id, request.form['nickname'], hash_password(request.form['password']))
                 login_user(user)
+                nickname=get_nickname()
                 return redirect(url_for('home'))
         except Exception as e:
             print(e)
@@ -171,7 +175,7 @@ def signup():
             conn.close()
     elif request.method == 'GET':
         already_used_or_not='他のサービスで使っているパスワードや名前などは絶対に使用しないでください。'
-    return render_template('signup.html', already_used_or_not=already_used_or_not)
+    return render_template('signup.html', already_used_or_not=already_used_or_not, nickname=nickname)
 
 ######################################################################
 # 盤面を初期化
