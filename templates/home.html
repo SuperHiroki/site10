@@ -3,11 +3,15 @@
 <head>
   <title>Home</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+  <head>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  
 </head>
 <body>
   <h4>あなたは {{ nickname }} </h4>
-  <h1 class="red-text">オセロのオンライン対戦</h1>
-  <h1 class="blue-text">管理者: ShiroatoHiro</h1>
+  <h1 class="red-text">_オセロのオンライン対戦_</h1>
   <a href="{{ url_for('signup') }}">Signup</a><br>
   <a href="{{ url_for('login') }}">Login</a><br>
   <a href="{{ url_for('logout') }}">Logout</a>
