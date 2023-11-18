@@ -17,8 +17,8 @@
 </div>
 <div class="flex flex-col items-center justify-center mt-2">
   <h4 class="text-lg text-gray-700 mt-4">あなたは {{ nickname }} </h4>
-  <h1 class="text-3xl font-bold text-red-600 mb-3 shadow-md p-2">Room ID: <span id="room_id" class="text-red-700">{{ room_id }}</span></h1>
-  <h1 class="text-3xl font-bold text-blue-600 mb-4 shadow-md p-2">Room Name: <span id="room_name" class="text-blue-700">{{ room_name }}</span></h1>
+  <h1 class="text-3xl font-bold text-red-600 mb-3 shadow-md p-4 border-2 border-gray-300">Room ID: <span id="room_id" class="text-red-700">{{ room_id }}</span></h1>
+  <h1 class="text-3xl font-bold text-blue-600 mb-4 shadow-md p-4 border-2 border-gray-300">Room Name: <span id="room_name" class="text-blue-700">{{ room_name }}</span></h1>
   <div class="flex flex-col items-center justify-center my-4">
     <h4>あなたは<span id="player_or_spectator"  class="text-green-500">観戦者</span>です</h4>
     <h4 id="current_turn" class="mt-2"></h4>
@@ -28,7 +28,7 @@
     </div>
     <h2 id="game_condition" class="text-red-500 text-xl mt-4"></h2>
   </div>
-  <div class="flex flex-col items-center justify-center shadow-xl p-8">
+  <div class="flex flex-col items-center justify-center shadow-xl p-8 border-2 border-gray-300">
     <h2 id="players_nickname" class="text-lg mt-4">??? vs ???</h2>
     <div id="board" class="mt-4">
       {% for i in range(8) %}
